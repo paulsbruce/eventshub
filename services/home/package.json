@@ -1,0 +1,63 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "node-fetch": "^2.6.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "request-ip": "^2.1.3",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start-api": "cd api && FLASK_ENV=development flask run --host=0.0.0.0 --port=5000",
+
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev:build-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
+    "dev:start": "HOST='0.0.0.0' PORT=3000 nodemon ./server-build/index.js",
+    "dev": "npm-run-all --parallel build start-api dev:*",
+
+    "prod:build-ruxit": "NODE_ENV=development webpack --config webpack.ruxit.js --mode=development -w",
+    "prod:compile-ruxit": "node server/compile_ruxit.js",
+    "prod": "npm run prod:compile-ruxit && npm-run-all --parallel start-api start"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "css-loader": "^5.0.1",
+    "mini-css-extract-plugin": "^1.3.0",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "style-loader": "^2.0.0",
+    "svg-transform-loader": "^2.0.13",
+    "webpack-cli": "^4.2.0",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "proxy": "http://localhost:5000"
+}
